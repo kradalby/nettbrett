@@ -3,21 +3,24 @@ package main
 import (
     "github.com/gin-gonic/gin"
     "github.com/olahol/melody"
+    "log"
 )
 
 
 var m *melody.Melody
+var config Config
 
 func main() {
     m = melody.New()
+    config = readConfig("config.toml")
+
+    log.Println(config.Server)
+
     startGin()
+    log.Println("test")
 }
 
 func startGin() {
-
-    g = G{}
-    g.InitDB()
-    g.InitSchema()
 
     router := gin.New()
 
@@ -27,11 +30,15 @@ func startGin() {
     router.GET("/ws", ws)
     router.Static("/static", "frontend/static")
 
-    v1 := router.Group("/api/v1")
-    {
-    }
+    //    v1 := router.Group("/api/v1")
+    //    {
+    //    }
 
-    m.HandleConnect(sendAllServersOnConnect)
+    //    m.HandleConnect(sendAllServersOnConnect)
 
     router.Run(":7777")
+}
+
+func startSNMP() {
+    SNMPRun()
 }

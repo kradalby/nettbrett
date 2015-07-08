@@ -1,0 +1,10 @@
+[server]
+
+    [server.test]
+    ip = "127.0.0.1"
+    port = 16100
+    inByte = ".1.3.6.1.2.1.31.1.1.1.6.2"
+    outByte = ".1.3.6.1.2.1.31.1.1.1.10.2"
+
+[misc]
+interval = 3

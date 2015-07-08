@@ -4,7 +4,7 @@ package main
 import (
     "encoding/json"
     "log"
-    "github.com/olahol/melody"
+//    "github.com/olahol/melody"
 )
 
 type Envelope struct {
@@ -28,18 +28,6 @@ func prepareAndDistributeWSData(dataType string, data interface{}) {
     m.Broadcast(j)
 }
 
-func sendAllServersOnConnect(s *melody.Session) {
-    servers := g.getAllServers()
-
-
-    message := Envelope{
-        DataType: "init",
-        Data: servers,
-    }
-
-    s.Write(superMarshaller(message))
-
-}
 
 func superMarshaller(message interface{}) []byte {
     j, err := json.Marshal(message)
