@@ -16,7 +16,7 @@ type NetworkInterface struct {
 func SNMPRun() {
 
     // Initiate the SNMP client
-    snmp, err := gosnmp.NewGoSNMP(cfg.Snmp.Server, cfg.Snmp.Community, gosnmp.Version2c, 5)
+    snmp, err := gosnmp.NewGoSNMP(config.Server["test"].IP, config.Server["test"].Community, gosnmp.Version2c, 5)
     if err != nil {
         log.Println("Error: ", err)
     }
@@ -27,22 +27,21 @@ func SNMPRun() {
     var pastUpT time.Time
     var pastDownT time.Time
 
-    var speed int64 = cfg.Misc.IntSpeed
-
     for {
         //resp, err := s.Get(".1.3.6.1.2.1.31.1.1.1.6.4")  // Interface 4 linux
         //resp, err := s.Get(".1.3.6.1.2.1.31.1.1.1.6.9")    // Interface 9 cisco 2940
-        down := getFirstSNMPValue(cfg.Snmp.InByte, s)
-        up := getFirstSNMPValue(cfg.Snmp.OutByte, s)
+        down := getFirstSNMPValue(config.Server["test"].InByte, snmp)
+        up := getFirstSNMPValue(config.Server["test"].OutByte, snmp)
 
         downKBits := calculateSpeed(down, pastDown, &pastDownT)
         upKBits := calculateSpeed(up, pastUp, &pastUpT)
 
+        log.Println(downKBits, upKBits)
 
         pastUp = up
         pastDown = down
 
-        time.Sleep(cfg.Misc.Interval * time.Second)
+        time.Sleep(config.Misc.Interval * time.Second)
     }
 
 

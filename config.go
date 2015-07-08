@@ -4,6 +4,7 @@ import (
     "os"
     "io/ioutil"
     "log"
+    "time"
 
     "github.com/naoina/toml"
 )
@@ -12,13 +13,13 @@ type Config struct {
     Server map[string]Server
 
     Misc    struct {
-        Interval int
+        Interval time.Duration
     }
 }
 
 type Server struct {
-    Port    int
     IP      string
+    Community string
     InByte  string
     OutByte string
 }

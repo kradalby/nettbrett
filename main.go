@@ -16,7 +16,8 @@ func main() {
 
     log.Println(config.Server)
 
-    startGin()
+    go startGin()
+    startSNMP()
     log.Println("test")
 }
 
