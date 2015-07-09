@@ -35,7 +35,10 @@ var app = (function () {
                 console.log(msg.dataType)
                 switch(msg.dataType) {
                     case "uplink":
-                        console.log(msg.data)
+                        document.querySelector("#total-speed-in").innerHTML = msg.data.speedDown
+                        document.querySelector("#total-speed-out").innerHTML = msg.data.speedUp
+                        document.querySelector("#total-data-in").innerHTML = msg.data.bytesReceived
+                        document.querySelector("#total-data-out").innerHTML = msg.data.bytesSent
                         break
                 }
 
