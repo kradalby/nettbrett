@@ -14,10 +14,8 @@ func main() {
     m = melody.New()
     config = readConfig("config.toml")
 
-    log.Println(config.Server)
-
-    go startGin()
     startSNMP()
+    startGin()
     log.Println("test")
 }
 

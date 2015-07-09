@@ -1,0 +1,35 @@
+@import "http://meyerweb.com/eric/tools/css/reset/reset.css";
+@import "http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700";
+
+@background: #ffffff;
+
+
+@widget-background: #efefef;
+
+body {
+    background: @background;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #666;
+}
+
+.widget {
+    display: inline-block;
+    box-sizing: border-box;
+    background: @widget-background;
+    width: 350px;
+    height: 450px;
+    @p-size: 20px;
+    //padding: @p-size @p-size @p-size @p-size;
+    margin: @p-size @p-size @p-size @p-size;
+
+    h1 {
+        background: darken(@widget-background, 10%);
+        text-align: center;
+        font-size: 25px;
+        padding: 10px 0 10px 0;
+    }
+
+    > div {
+        padding: 20px 20px 20px 20px;
+    }
+}

@@ -10,19 +10,28 @@ import (
 )
 
 type Config struct {
-    Server map[string]Server
+    Http    struct {
+        Port    int
+    }
 
     Misc    struct {
         Interval time.Duration
     }
+
+    Uplink struct {
+        IP      string
+        Community string
+        InByte  string
+        OutByte string
+    }
+
+    Dhcp struct {
+        IP      string
+        Community string
+    }
 }
 
-type Server struct {
-    IP      string
-    Community string
-    InByte  string
-    OutByte string
-}
+
 
 func readConfig(filename string) Config {
     f, err := os.Open(filename)

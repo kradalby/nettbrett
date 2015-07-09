@@ -29,15 +29,15 @@ func prepareAndDistributeWSData(dataType string, data interface{}) {
 }
 
 
-func superMarshaller(message interface{}) []byte {
-    j, err := json.Marshal(message)
-
-    if err != nil {
-        log.Printf("Error while encoding struct")
-    }
-
-    //pack := "'" + string(j) + "'"
-    pack := string(j)
-
-    return []byte(pack)
-}
+//func superMarshaller(message interface{}) []byte {
+//    j, err := json.Marshal(message)
+//
+//    if err != nil {
+//        log.Printf("Error while encoding struct")
+//    }
+//
+//    //pack := "'" + string(j) + "'"
+//    pack := string(j)
+//
+//    return []byte(pack)
+//}
