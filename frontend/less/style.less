@@ -12,15 +12,17 @@ body {
     color: #666;
 }
 
+
 .widget {
     display: inline-block;
+    vertical-align: top;
     box-sizing: border-box;
     background: @widget-background;
     width: 350px;
     height: 450px;
     @p-size: 20px;
     //padding: @p-size @p-size @p-size @p-size;
-    margin: @p-size @p-size @p-size @p-size;
+    margin: @p-size @p-size @p-size 0;
 
     h1 {
         background: darken(@widget-background, 10%);
@@ -31,5 +33,37 @@ body {
 
     > div {
         padding: 20px 20px 20px 20px;
+    }
+}
+
+@media only screen and (min-width:300px){
+    .container {
+        width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width:600px){
+    .container {
+        width: 580px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width:960px){
+    .container {
+        width: 940px;
+    }
+}
+
+@media only screen and (min-width:1140px){
+    .container {
+        width: 1120px;
+    }
+}
+
+@media only screen and (min-width:1360px){
+    .container {
+        width: 1300px;
     }
 }
