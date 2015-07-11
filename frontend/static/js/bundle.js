@@ -1,7 +1,13 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";var util=require("util"),app=function(){var e=function(){var e,t=window.location;return e="https:"===t.protocol?"wss:":"ws:",e+="//"+t.host+"/ws"};return{init:function(){var t=new WebSocket(e());t.onmessage=function(e){var t=JSON.parse(e.data);switch(console.log(t.dataType),t.dataType){case"uplink":document.querySelector("#total-speed-in").innerHTML=t.data.speedDown,document.querySelector("#total-speed-out").innerHTML=t.data.speedUp,document.querySelector("#total-data-in").innerHTML=t.data.bytesReceived,document.querySelector("#total-data-out").innerHTML=t.data.bytesSent}}}}}();app.init();
+"use strict";var util=require("util"),bandwidth=require("./bandwidth.js"),du=require("./datausage.js"),app=function(){var t=function(){var t,a=window.location;return t="https:"===a.protocol?"wss:":"ws:",t+="//"+a.host+"/ws"};return{init:function(){var a=new WebSocket(t());a.onmessage=function(t){var a=JSON.parse(t.data);switch(a.dataType){case"uplink":bandwidth.draw_chart_bandwidth_in(a.data.speedDown,a.data.maxSpeed),bandwidth.draw_chart_bandwidth_out(a.data.speedUp,a.data.maxSpeed),document.querySelector("#total-data-in").innerHTML=du.format_bytes(a.data.bytesReceived,3),document.querySelector("#total-data-out").innerHTML=du.format_bytes(a.data.bytesSent,3)}}}}}();app.init();
 
-},{"util":5}],2:[function(require,module,exports){
+},{"./bandwidth.js":2,"./datausage.js":3,"util":7}],2:[function(require,module,exports){
+"use strict";var bandwidth=function(){var t={pieHole:.7,backgroundColor:"#efefef",chartArea:{width:"100%",height:"80%"},pieSliceText:"none",pieSliceBorderColor:"black",tooltip:{trigger:"none"},legend:"none",slices:{0:{color:"pink"},1:{color:"transparent"}}},e=function(t,e){var i=[["",""]],n=t/e*100,r=100-n;return i.push(["",n]),i.push(["",r]),i=google.visualization.arrayToDataTable(i)},i=function(t,e){if(0==t)return"0 bit/s";var i=1024,n=e+1||3,r=["bit/s","Kbit/s","Mbit/s","Gbit/s","Tbit/s","Pbit/s","Ebit/s","Zbit/s","Ybit/s"],o=Math.floor(Math.log(t)/Math.log(i));return(t/Math.pow(i,o)).toPrecision(n)+" "+r[o]},n=new google.visualization.PieChart(document.getElementById("bandwidth-in-chart")),r=new google.visualization.PieChart(document.getElementById("bandwidth-out-chart")),o=function(r,o){var a=document.querySelector("#bandwidth-in-center"),d=e(r,o);n.draw(d,t),a.innerHTML=i(r,2)},a=function(n,o){var a=document.querySelector("#bandwidth-out-center"),d=e(n,o);r.draw(d,t),a.innerHTML=i(n,2)};return{format_speed:i,draw_chart_bandwidth_in:o,draw_chart_bandwidth_out:a}}();module.exports=bandwidth;
+
+},{}],3:[function(require,module,exports){
+"use strict";var datausage=function(){var t=function(t,a){if(0==t)return"0 Byte";var r=1e3,e=a+1||3,o=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],B=Math.floor(Math.log(t)/Math.log(r));return(t/Math.pow(r,B)).toPrecision(e)+" "+o[B]};return{format_bytes:t}}();module.exports=datausage;
+
+},{}],4:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -26,7 +32,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],3:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -118,14 +124,14 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -715,4 +721,4 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":4,"_process":3,"inherits":2}]},{},[1]);
+},{"./support/isBuffer":6,"_process":5,"inherits":4}]},{},[1]);

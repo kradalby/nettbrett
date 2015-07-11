@@ -1,5 +1,7 @@
 'use strict'
 var util = require("util")
+var bandwidth = require("./bandwidth.js")
+var du = require("./datausage.js")
 
 var app = (function () {
 
@@ -32,13 +34,12 @@ var app = (function () {
             socket.onmessage = function (event) {
                 var msg = JSON.parse(event.data)
 
-                console.log(msg.dataType)
                 switch(msg.dataType) {
                     case "uplink":
-                        document.querySelector("#total-speed-in").innerHTML = msg.data.speedDown
-                        document.querySelector("#total-speed-out").innerHTML = msg.data.speedUp
-                        document.querySelector("#total-data-in").innerHTML = msg.data.bytesReceived
-                        document.querySelector("#total-data-out").innerHTML = msg.data.bytesSent
+                        bandwidth.draw_chart_bandwidth_in(msg.data.speedDown, msg.data.maxSpeed)
+                        bandwidth.draw_chart_bandwidth_out(msg.data.speedUp, msg.data.maxSpeed)
+                        document.querySelector("#total-data-in").innerHTML = du.format_bytes(msg.data.bytesReceived, 3)
+                        document.querySelector("#total-data-out").innerHTML = du.format_bytes(msg.data.bytesSent, 3)
                         break
                 }
 

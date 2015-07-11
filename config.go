@@ -23,6 +23,7 @@ type Config struct {
         Community string
         InByte  string
         OutByte string
+        MaxSpeed int64
     }
 
     Dhcp struct {
