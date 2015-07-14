@@ -5,7 +5,7 @@ var bandwidth = (function () {
     var chart_options = {
         pieHole: 0.7,
         backgroundColor: "#efefef",
-        chartArea: {'width': '100%', 'height': '80%'},
+        chartArea: {'width': '85%', 'height': '80%'},
 
         pieSliceText: 'none',
         pieSliceBorderColor: "black",

@@ -21,21 +21,22 @@ body {
   padding: 10px 0 10px 0;
 }
 .widget > div {
-  padding: 20px 20px 20px 20px;
+  position: relative;
 }
 .bandwidth .bandwidth-chart {
-  height: 330px;
-  width: 330px;
+  height: 400px;
+  width: 350px;
 }
 .bandwidth .bandwidth-center {
-  height: 380px;
-  line-height: 380px;
-  padding-top: 8px;
+  height: 330px;
+  line-height: 330px;
   position: absolute;
   text-align: center;
-  top: 0;
+  top: 30px;
+  left: 55px;
   vertical-align: middle;
   width: 250px;
+  font-size: 33px;
 }
 #datausage h2 {
   font-size: 70px;
@@ -44,6 +45,9 @@ body {
 #datausage h3 {
   margin-top: 15px;
   font-size: 50px;
+}
+#datausage > div {
+  padding-left: 20px;
 }
 @media only screen and (min-width: 300px) {
   .container {
