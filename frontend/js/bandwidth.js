@@ -60,10 +60,19 @@ var bandwidth = (function () {
         chart_center_bandwidth_out.innerHTML = format_speed(bits, 2)
     }
 
+    var update_peak_bandwidth = function (inn, out) {
+        var bandwidth_peak_in = document.querySelector("#bandwidth-peak-in")
+        var bandwidth_peak_out = document.querySelector("#bandwidth-peak-out")
+
+        bandwidth_peak_in.innerHTML = format_speed(inn, 2)
+        bandwidth_peak_out.innerHTML = format_speed(out, 2)
+    }
+
     return {
         format_speed: format_speed,
         draw_chart_bandwidth_in: draw_chart_bandwidth_in,
-        draw_chart_bandwidth_out: draw_chart_bandwidth_out
+        draw_chart_bandwidth_out: draw_chart_bandwidth_out,
+        update_peak_bandwidth: update_peak_bandwidth
     }
 
 })()

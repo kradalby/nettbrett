@@ -38,6 +38,7 @@ var app = (function () {
                     case "uplink":
                         bandwidth.draw_chart_bandwidth_in(msg.data.speedDown, msg.data.maxSpeed)
                         bandwidth.draw_chart_bandwidth_out(msg.data.speedUp, msg.data.maxSpeed)
+                        bandwidth.update_peak_bandwidth(msg.data.peakSpeedDown, msg.data.peakSpeedUp)
                         document.querySelector("#total-data-in").innerHTML = du.format_bytes(msg.data.bytesReceived, 3)
                         document.querySelector("#total-data-out").innerHTML = du.format_bytes(msg.data.bytesSent, 3)
                         break

@@ -38,16 +38,22 @@ body {
   width: 250px;
   font-size: 33px;
 }
+#datausage h3,
+#bandwidth-peak h3 {
+  margin-top: 15px;
+  font-size: 50px;
+}
+#datausage > div,
+#bandwidth-peak > div {
+  padding-left: 20px;
+}
 #datausage h2 {
   font-size: 70px;
   text-align: center;
 }
-#datausage h3 {
-  margin-top: 15px;
-  font-size: 50px;
-}
-#datausage > div {
-  padding-left: 20px;
+#bandwidth-peak h2 {
+  font-size: 55px;
+  text-align: center;
 }
 @media only screen and (min-width: 300px) {
   .container {
