@@ -23,9 +23,10 @@ func startGin() {
 
     router := gin.New()
 
-    router.LoadHTMLFiles("frontend/index.html")
+    // router.LoadHTMLFiles("./frontend/index.html")
 
-    router.GET("/", index)
+    // router.GET("/", index)
+    router.StaticFile("/", "./frontend/index.html")
     router.GET("/ws", ws)
     router.Static("/static", "frontend/static")
 
@@ -35,7 +36,7 @@ func startGin() {
 
     //    m.HandleConnect(sendAllServersOnConnect)
 
-    router.Run(":7777")
+    router.Run(":7778")
 }
 
 func startSNMP() {

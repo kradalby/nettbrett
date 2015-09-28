@@ -11,7 +11,7 @@ func notYetImplemented(c *gin.Context) {
 }
 
 func index (c *gin.Context) {
-    c.HTML(http.StatusOK, "index.html", gin.H{})
+    c.HTML(http.StatusOK, "frontend/index.html", gin.H{})
 }
 
 func ws(c *gin.Context) {
