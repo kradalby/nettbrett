@@ -2,6 +2,8 @@
 var util = require("util")
 var bandwidth = require("./bandwidth.js")
 var du = require("./datausage.js")
+var leases = require('./leases.js')
+
 
 var app = (function () {
 
@@ -45,6 +47,9 @@ var app = (function () {
                 }
 
             }
+
+            leases.init()
+
         },
     }
 
