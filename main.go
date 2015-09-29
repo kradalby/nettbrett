@@ -36,7 +36,7 @@ func startGin() {
 
     //    m.HandleConnect(sendAllServersOnConnect)
 
-    router.Run(":7778")
+    router.Run(Config.Http.Port)
 }
 
 func startSNMP() {
