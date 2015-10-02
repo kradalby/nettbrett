@@ -36,7 +36,7 @@ func startGin() {
 
     //    m.HandleConnect(sendAllServersOnConnect)
 
-    router.Run(Config.Http.Port)
+    router.Run(config.Http.Port)
 }
 
 func startSNMP() {

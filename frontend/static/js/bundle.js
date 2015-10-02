@@ -8,7 +8,7 @@
 "use strict";var datausage=function(){var t=function(t,a){if(0==t)return"0 Byte";var r=1e3,e=a+1||3,o=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],B=Math.floor(Math.log(t)/Math.log(r));return(t/Math.pow(r,B)).toPrecision(e)+" "+o[B]};return{format_bytes:t}}();module.exports=datausage;
 
 },{}],4:[function(require,module,exports){
-"use strict";var request=require("browser-request"),leases=function(){var e=(document.getElementById("dhcp"),document.getElementById("total-ip-leases")),t=function(e){request(e,function(e,t,o){if(e)throw e;console.log(o),n(o)})},n=function(t){e.innerHTML=t},o=function i(e){t(e),window.setTimeout(function(){i(e)},5e3)};return{init:function(){var e="http://dolly.pp24.polarparty.no/cgi-bin/leases.cgi";o(e)}}}();module.exports=leases;
+"use strict";var request=require("browser-request"),leases=function(){var e=(document.getElementById("dhcp"),document.getElementById("total-ip-leases")),t=function(e){request(e,function(e,t,o){if(e)throw e;console.log(o);var r=JSON.parse(o);n(r.summary.used)})},n=function(t){e.innerHTML=t},o=function r(e){t(e),window.setTimeout(function(){r(e)},5e3)};return{init:function(){var e="http://dolly.pp24.polarparty.no:81/cgi-bin/leases.cgi";o(e)}}}();module.exports=leases;
 
 },{"browser-request":5}],5:[function(require,module,exports){
 // Browser Request

@@ -11,7 +11,7 @@ import (
 
 type Config struct {
     Http    struct {
-        Port    int
+        Port    string
     }
 
     Misc    struct {

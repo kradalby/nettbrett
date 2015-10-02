@@ -12,7 +12,8 @@ var leases = (function () {
             if (err)
                 throw err
             console.log(body)
-            update_leases(body)
+            var json = JSON.parse(body)
+            update_leases(json["summary"]["used"])
         })
     }
 
@@ -29,7 +30,7 @@ var leases = (function () {
 
     return {
         init: function () {
-            var url = 'http://dolly.pp24.polarparty.no/cgi-bin/leases.cgi'
+            var url = 'http://dolly.pp24.polarparty.no:81/cgi-bin/leases.cgi'
             runner(url)
 
 
